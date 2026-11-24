@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
   <defs>
     <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse">
-      <circle cx="4" cy="4" r=".62" fill="#C3F58D" fill-opacity=".24" />
+      <circle cx="4" cy="4" r=".62" fill="#477BFF" fill-opacity=".24" />
     </pattern>
   </defs>
   <rect width="64" height="64" fill="url(#dots)" />

@@ -198,7 +198,7 @@ function ThemeToggle() {
       if (next) root.dataset.theme = next;
       else delete root.dataset.theme;
       if (schemeMeta) schemeMeta.content = next ?? 'light dark';
-      if (colorMeta) colorMeta.content = resolvedTheme() === 'dark' ? '#04170b' : '#f4f1e8';
+      if (colorMeta) colorMeta.content = resolvedTheme() === 'dark' ? '#080b10' : '#ecebe7';
       sync();
     };
     sync();
@@ -226,7 +226,7 @@ function ThemeToggle() {
     const schemeMeta = document.querySelector('meta[name="color-scheme"]');
     const colorMeta = document.querySelector('meta[name="theme-color"]');
     if (schemeMeta) schemeMeta.content = shouldFollowSystem ? 'light dark' : nextTheme;
-    if (colorMeta) colorMeta.content = nextTheme === 'dark' ? '#04170b' : '#f4f1e8';
+    if (colorMeta) colorMeta.content = nextTheme === 'dark' ? '#080b10' : '#ecebe7';
     setTheme(nextTheme);
   }
 
