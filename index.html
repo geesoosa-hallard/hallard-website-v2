@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" data-type="software" data-site-kind="software">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#082012" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      try {
+        const theme = localStorage.getItem('hallard:theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.dataset.theme = theme;
+          document.querySelector('meta[name="color-scheme"]').content = theme;
+          document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#04170b' : '#f4f1e8';
+        }
+      } catch {}
+    </script>
+    <meta name="page-type" content="software" />
+    <meta name="site-kind" content="software" />
+    <meta name="description" content="Hallard is a voice-first AI workforce for businesses that need work to move with human approval in view." />
+    <link rel="canonical" href="https://hallard.io/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="Hallard — Let AI agents do the work" />
+    <meta property="og:description" content="Turn a business problem into coordinated work with a visible AI team and human approval." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hallard" />
+    <meta property="og:url" content="https://hallard.io/" />
+    <meta property="og:image" content="https://hallard.io/og-hallard.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hallard — Let AI agents do the work" />
+    <meta name="twitter:description" content="Turn a business problem into coordinated work with a visible AI team and human approval." />
+    <meta name="twitter:image" content="https://hallard.io/og-hallard.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://hallard.io/#organization",
+            "name": "Mentek, LLC",
+            "alternateName": "Hallard",
+            "url": "https://hallard.io/",
+            "logo": "https://hallard.io/favicon.svg"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://hallard.io/#website",
+            "name": "Hallard",
+            "url": "https://hallard.io/",
+            "publisher": { "@id": "https://hallard.io/#organization" },
+            "inLanguage": "en"
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://hallard.io/#software",
+            "name": "Hallard",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "description": "A voice-first AI workspace where people and specialist AI agents coordinate business work with human approval.",
+            "url": "https://hallard.io/",
+            "offers": [
+              { "@type": "Offer", "name": "Starter", "price": "47", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "unitText": "month" } },
+              { "@type": "Offer", "name": "Business", "price": "197", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "unitText": "month" } },
+              { "@type": "Offer", "name": "Business Plus", "price": "297", "priceCurrency": "USD", "priceSpecification": { "@type": "UnitPriceSpecification", "unitText": "month" } }
+            ]
+          }
+        ]
+      }
+    </script>
+    <title>Hallard — Let AI agents do the work</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

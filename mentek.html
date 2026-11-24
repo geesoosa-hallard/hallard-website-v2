@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" data-type="organization" data-site-kind="company">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#082012" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      try {
+        const theme = localStorage.getItem('hallard:theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.dataset.theme = theme;
+          document.querySelector('meta[name="color-scheme"]').content = theme;
+          document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#04170b' : '#f4f1e8';
+        }
+      } catch {}
+    </script>
+    <meta name="description" content="Mentek builds systems for people and AI to take useful business work forward together, with context, human judgment, and proof in view." />
+    <link rel="canonical" href="https://hallard.io/mentek.html" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="Mentek — People and AI, moving forward together" />
+    <meta property="og:description" content="The company behind Hallard: systems for useful, accountable work shared by people and AI." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mentek" />
+    <meta property="og:url" content="https://hallard.io/mentek.html" />
+    <meta property="og:image" content="https://hallard.io/og-hallard.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Mentek — People and AI, moving forward together</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/mentek-main.jsx"></script>
+  </body>
+</html>

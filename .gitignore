@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.vite/
+.ssr/
+.wrangler/
+.taste-skill/
+.impeccable/
+docs/poc/impeccable/
+.taste-skill/chrome-check/

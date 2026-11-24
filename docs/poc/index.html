@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en" data-motion>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hallard — AI agents for business work</title>
+  <meta name="description" content="Describe the business problem. Hallard brings the right AI agents into the conversation, builds the plan with you, and keeps the work moving until you approve it.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Hallard — Let AI agents do the work">
+  <meta property="og:description" content="A voice-first AI workspace where specialist agents coordinate real business work under your direction.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#0c2012">
+  <style>
+    @font-face { font-family: "Red Hat Display"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("assets/fonts/red-hat-display-latin.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+    :root { --ink: #0c2012; --pine: #103817; --moss: #20542b; --lime: #c6f19d; --paper: #f5f2e9; --line: #b8c4b5; --muted: #60705f; --ease-out: cubic-bezier(.23, 1, .32, 1); --font-display: "Red Hat Display", system-ui, sans-serif; --font-text: "Red Hat Display", system-ui, sans-serif; --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+    * { box-sizing: border-box; }
+    html { color: var(--ink); background: var(--ink); scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body { position: relative; margin: 0; padding-top: 74px; color: var(--ink); background: var(--ink); font-family: var(--font-text); }
+    img { display: block; max-width: 100%; }
+    button, input, textarea { font: inherit; }
+    button, summary { -webkit-tap-highlight-color: transparent; }
+    ::selection { color: var(--ink); background: var(--lime); }
+    :where(a, button, input, textarea, summary):focus-visible { outline: 3px solid var(--lime); outline-offset: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    .wrap { width: min(1440px, calc(100% - clamp(32px, 6vw, 112px))); margin-inline: auto; }
+    .skip-link { position: fixed; z-index: 40; top: 8px; left: 8px; padding: 10px 14px; color: var(--ink); background: var(--lime); transform: translateY(-160%); }
+    .skip-link:focus { transform: translateY(0); }
+
+    .nav { position: fixed; z-index: 20; inset: 0 0 auto; height: 74px; color: #f8fcf4; background: rgba(12, 32, 18, .98); border-bottom: 1px solid rgba(198, 241, 157, .18); }
+    .nav__bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 74px; gap: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; width: max-content; color: inherit; font-size: 22px; font-weight: 700; letter-spacing: -.04em; text-decoration: none; }
+    .brand-mark { width: 17px; height: 17px; border: 5px solid var(--lime); border-bottom: 0; border-radius: 10px 10px 0 0; }
+    .nav__links { display: flex; align-items: center; gap: clamp(14px, 2vw, 34px); }
+    .nav__links a { color: #ecf3e8; font-size: 14px; font-weight: 700; text-decoration: none; }
+    .nav__links a:hover { color: var(--lime); }
+    .nav__action { justify-self: end; }
+    .menu-toggle { display: none; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 0 17px; color: var(--ink); background: var(--lime); border: 1px solid var(--lime); border-radius: 8px; font-weight: 700; line-height: 1; text-decoration: none; cursor: pointer; }
+    .btn:hover { background: #dcffbc; border-color: #dcffbc; }
+    .btn--dark { color: #f7fbf3; background: transparent; border-color: rgba(247, 251, 243, .27); }
+    .btn--dark:hover { color: var(--ink); background: var(--lime); border-color: var(--lime); }
+    .btn svg, summary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+
+    .ambient-field { position: fixed; z-index: 2; inset: 0; pointer-events: none; opacity: .14; background: url("assets/hallard-particle-field.svg") 0 0 / 180px 180px repeat; mix-blend-mode: soft-light; }
+    main > section, .closing { position: relative; }
+    main > section > .wrap, .closing > .wrap { position: relative; z-index: 3; }
+    main > section { min-height: auto; padding: clamp(72px, 9vw, 148px) 12px; }
+    main > .hero { height: auto; min-height: 0; padding: 0; display: block; }
+    .hero { position: relative; overflow: clip; color: #f9fcf6; background: var(--ink); }
+    .hero::before { content: ""; position: absolute; inset: 0 0 0 53%; background: #102a16; }
+    main > .hero > .wrap.hero__grid { position: relative; display: grid; height: auto; grid-template-columns: minmax(0, 1.06fr) minmax(410px, .94fr); grid-template-rows: none; row-gap: 0; gap: clamp(36px, 6vw, 96px); align-items: center; min-height: min(780px, calc(100svh - 74px)); padding-block: clamp(62px, 8vw, 110px); }
+    .hero-copy { max-width: 720px; }
+    .hero h1 { max-width: 10.5ch; margin: 0; font-size: clamp(4.35rem, 7vw, 7.7rem); font-weight: 700; letter-spacing: -.04em; line-height: .84; text-wrap: balance; }
+    .rotating-slot { position: relative; display: block; block-size: 1.95em; max-width: 10.7ch; overflow: clip; color: var(--lime); }
+    .rotating-word { position: absolute; inset: .04em auto auto 0; display: block; width: 100%; transform-origin: left center; }
+    .rotating-word--signature { color: #f9fcf6; font-size: 1.17em; letter-spacing: -.055em; }
+    .hero p { max-width: 54ch; margin: 30px 0 0; color: #d6e4d0; font-size: clamp(1rem, 1.25vw, 1.22rem); line-height: 1.5; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 27px; }
+    .hero-proof { display: flex; gap: 10px; align-items: flex-start; max-width: 55ch; margin: 19px 0 0; color: #c2d1bd; font-size: 14px; line-height: 1.4; }
+    .hero-proof::before { content: ""; flex: 0 0 auto; width: 8px; height: 8px; margin-top: 5px; background: var(--lime); border-radius: 50%; }
+    .motion-control { display: inline-block; margin-top: 9px; padding: 8px 0; color: #b8cbb5; background: transparent; border: 0; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+    .motion-control:hover { color: #fff; }
+
+    .routing-window { position: relative; width: 100%; border: 1px solid rgba(198, 241, 157, .33); background: #0e2813; }
+    .routing-top { display: flex; align-items: center; justify-content: space-between; min-height: 62px; padding: 17px 19px; border-bottom: 1px solid rgba(255, 255, 255, .12); color: #d9e7d4; font: 600 12px/1 var(--font-mono); letter-spacing: .04em; }
+    .routing-top strong { color: var(--lime); font: inherit; }
+    .routing-body { display: grid; grid-template-columns: 138px minmax(0, 1fr); min-height: 382px; }
+    .agent-rail { display: grid; align-content: start; gap: 7px; padding: 18px 11px; border-right: 1px solid rgba(255, 255, 255, .11); }
+    .agent-rail p { margin: 0 6px 6px; color: #a8bba4; font: 500 12px/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+    .agent-button { display: flex; align-items: center; gap: 9px; width: 100%; min-height: 38px; padding: 9px 8px; color: #d5e1d1; background: transparent; border: 0; text-align: left; cursor: pointer; }
+    .agent-button[aria-pressed="true"], .agent-button:hover { color: #fff; background: rgba(198, 241, 157, .12); }
+    .agent-dot { width: 8px; height: 8px; background: var(--lime); border-radius: 50%; }.agent-dot--blue { background: #78d8ef; }.agent-dot--orange { background: #ff9f72; }.agent-dot--violet { background: #d6c3ff; }
+    .routing-main { padding: clamp(18px, 2vw, 30px); }
+    .micro-label { margin: 0 0 10px; color: #a9b9a5; font: 500 12px/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }
+    .request { margin: 0; padding-bottom: 23px; border-bottom: 1px solid rgba(255, 255, 255, .12); color: #fff; font-size: clamp(1.08rem, 1.6vw, 1.42rem); font-weight: 700; letter-spacing: -.025em; line-height: 1.3; }.request em { color: var(--lime); font-style: normal; }
+    .route-title { display: flex; justify-content: space-between; gap: 14px; margin: 19px 0 11px; color: #b3c8ae; font: 500 12px/1.3 var(--font-mono); letter-spacing: .05em; text-transform: uppercase; }.route-title b { color: var(--lime); font: inherit; }
+    .route-list { display: grid; gap: 9px; margin: 0; padding: 0; list-style: none; }
+    .route-list li { display: grid; grid-template-columns: 22px 1fr auto; align-items: center; gap: 9px; color: #eff6ec; font-size: 13px; line-height: 1.3; }.route-list i { display: grid; width: 20px; height: 20px; place-items: center; color: var(--ink); background: var(--lime); border-radius: 50%; font: 600 11px/1 var(--font-mono); font-style: normal; }.route-list small { color: #b4d0af; font: 500 11px/1 var(--font-mono); }
+    .approval-line { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 22px; padding: 14px; color: #e9f4e5; border: 1px solid rgba(198, 241, 157, .34); background: rgba(198, 241, 157, .08); font-size: 13px; }.approval-line small { color: var(--lime); font: 600 11px/1 var(--font-mono); }
+    .routing-replay { display: inline-flex; align-items: center; gap: 7px; margin-top: 15px; padding: 7px 0; color: #c5d8bf; background: transparent; border: 0; font-size: 13px; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }.routing-replay:hover { color: var(--lime); }.routing-replay svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    @media (prefers-reduced-motion: no-preference) { .motion-ready .routing-window.is-routing [data-route-step] { animation: route-in .58s var(--ease-out) both; animation-delay: var(--route-delay); } }
+    @keyframes route-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+    .problem-section { color: var(--ink); background: var(--paper); }
+    .problem-grid { display: grid; grid-template-columns: minmax(290px, .8fr) minmax(530px, 1.2fr); gap: clamp(40px, 8vw, 136px); align-items: start; }
+    .problem-intro { position: sticky; top: 110px; }.problem-intro h2, .voice-copy h2, .brief-copy h2, .life-copy h2, .plans-head h2 { max-width: 10.5ch; margin: 0; font-size: clamp(3rem, 5vw, 5.8rem); letter-spacing: -.04em; line-height: .9; text-wrap: balance; }.problem-intro p, .voice-copy > p, .brief-copy > p, .life-copy > p, .plans-head > p { max-width: 37ch; margin: 25px 0 0; color: #3b5038; font-size: 17px; line-height: 1.5; }
+    .problem-explorer { padding: 12px 0; border-top: 2px solid var(--ink); border-bottom: 1px solid #aab9a7; }
+    .problem-tabs { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid #aab9a7; }
+    .problem-tab { min-height: 74px; padding: 16px 14px; color: #3a5038; background: transparent; border: 0; border-right: 1px solid #c1cbc0; text-align: left; font-size: 14px; font-weight: 700; cursor: pointer; }.problem-tab:nth-child(3n) { border-right: 0; }.problem-tab[aria-selected="true"], .problem-tab:hover { color: var(--ink); background: var(--lime); }
+    .problem-panel { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(230px, .95fr); gap: clamp(26px, 5vw, 66px); min-height: 420px; padding: clamp(26px, 4vw, 52px) 0; }
+    .problem-panel h3 { max-width: 14ch; margin: 0; font-size: clamp(2.2rem, 3.8vw, 4rem); letter-spacing: -.04em; line-height: .95; }.problem-panel p { max-width: 38ch; margin: 20px 0 0; color: #3a5038; line-height: 1.48; }
+    .pressure-map { display: grid; align-content: end; gap: 13px; padding: 0 0 0 clamp(18px, 3vw, 36px); border-left: 1px solid #9cab99; }.pressure-map > p { max-width: none; margin: 0 0 7px; color: #435c41; font: 500 12px/1.3 var(--font-mono); letter-spacing: .06em; text-transform: uppercase; }.signal { display: grid; grid-template-columns: 84px 1fr; gap: 12px; align-items: center; min-height: 46px; padding-bottom: 10px; border-bottom: 1px solid #c3cec0; }.signal span { font-size: 13px; }.signal i { display: block; height: 8px; background: var(--ink); transform-origin: left; }.signal:nth-of-type(2) i { width: 72%; background: #54744f; }.signal:nth-of-type(3) i { width: 48%; background: #7d9b75; }.signal:nth-of-type(4) i { width: 86%; background: var(--lime); }
+
+    .life-section { color: #f6faf2; background: #123218; }
+    .life-layout { display: grid; grid-template-columns: minmax(250px, .66fr) minmax(0, 1.34fr); gap: clamp(40px, 7vw, 112px); align-items: start; }.life-copy { position: sticky; top: 110px; padding-bottom: 42px; }.life-copy h2 { color: #f6faf2; }.life-copy > p { color: #c7d6c3; }
+    .life-scenes { display: grid; gap: 20px; }
+    .scene { position: relative; min-height: clamp(360px, 46vw, 600px); overflow: hidden; border: 1px solid rgba(230, 247, 224, .22); }.scene img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.68) contrast(1.04); transform: scale(1.08); }.scene-copy { position: absolute; inset: auto 0 0; padding: 22px; color: #fff; background: rgba(12, 32, 18, .86); }.scene-copy strong { display: block; margin-bottom: 5px; color: var(--lime); font-size: 13px; }.scene-copy span { display: block; max-width: 28ch; font-size: 15px; line-height: 1.35; }
+    @supports ((animation-timeline: view()) and (animation-range: entry)) { @media (prefers-reduced-motion: no-preference) { .scene { view-timeline: --life-scene block; }.scene img { animation: scene-parallax linear both; animation-timeline: --life-scene; animation-range: entry 0% exit 100%; } } }
+    @keyframes scene-parallax { from { transform: translateY(-6%) scale(1.12); } to { transform: translateY(6%) scale(1.12); } }
+
+    .voice-section { color: var(--ink); background: #e6ece1; }
+    .voice-grid { display: grid; grid-template-columns: minmax(300px, .75fr) minmax(500px, 1.25fr); gap: clamp(42px, 8vw, 140px); align-items: start; }.voice-copy { position: sticky; top: 110px; }
+    .voice-demo { border-top: 2px solid var(--ink); }.voice-thread { display: grid; gap: 14px; padding: 25px 0 31px; border-bottom: 1px solid #a8b8a5; }.thread-note { max-width: 78%; padding: 16px; background: #f7f9f3; border: 1px solid #b7c4b2; font-size: 15px; line-height: 1.42; }.thread-note--human { justify-self: end; color: #f6fbf2; background: #173c1d; border-color: #173c1d; }.thread-note--human p { margin: 0; }.thread-note--system { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 13px; max-width: 100%; color: #30482e; background: transparent; border: 0; padding: 12px 16px; }.thread-note--system p { margin: 0; }
+    .voice-button { display: inline-grid; width: 52px; height: 52px; place-items: center; color: var(--ink); background: var(--lime); border: 1px solid var(--ink); border-radius: 50%; cursor: pointer; }.voice-button svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+    .voice-button[aria-pressed="true"] { color: #f7fbf3; background: #173c1d; }.voice-state { color: #395038; font-size: 13px; }.voice-wave { display: flex; align-items: center; gap: 3px; height: 32px; }.voice-wave i { display: block; width: 3px; height: 8px; background: #698d65; transform: scaleY(.5); }.voice-wave[data-active="true"] i { animation: speak .82s cubic-bezier(.45,.05,.55,.95) infinite alternate; }.voice-wave[data-active="true"] i:nth-child(2) { animation-delay: .13s; }.voice-wave[data-active="true"] i:nth-child(3) { animation-delay: .28s; }.voice-wave[data-active="true"] i:nth-child(4) { animation-delay: .1s; }.voice-wave[data-active="true"] i:nth-child(5) { animation-delay: .34s; }.voice-wave[data-active="true"] i:nth-child(6) { animation-delay: .18s; }
+    @keyframes speak { from { transform: scaleY(.35); } to { transform: scaleY(1.75); } }
+    .orchestra-details { margin-top: 26px; padding: 12px; border-top: 1px solid #a8b8a5; border-bottom: 1px solid #a8b8a5; }.orchestra-details summary { display: flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 72px; list-style: none; font-weight: 700; cursor: pointer; }.orchestra-details summary::-webkit-details-marker { display: none; }.orchestra-details[open] summary { border-bottom: 1px solid #a8b8a5; }.orchestra-details[open] summary svg { transform: rotate(45deg); }.orchestra-frame { width: 100%; aspect-ratio: 5 / 4; margin-top: 12px; border: 0; background: #f7f9f3; }
+
+    .brief-section { color: #f4faef; background: #0d2512; }.brief-grid { display: grid; grid-template-columns: minmax(280px, .75fr) minmax(520px, 1.25fr); gap: clamp(40px, 8vw, 132px); align-items: start; }.brief-copy { position: sticky; top: 110px; }.brief-copy h2 { color: #f8fbf5; }.brief-copy > p { color: #c5d8c1; }
+    .brief-chat { padding: clamp(18px, 3.2vw, 38px); border: 1px solid rgba(198, 241, 157, .36); background: #133718; }.chat-top { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.14); color: #e8f1e4; font-size: 14px; font-weight: 700; }.chat-status { display: inline-flex; align-items: center; gap: 8px; color: var(--lime); font: 500 12px/1 var(--font-mono); text-transform: uppercase; }.chat-status::before { content: ""; width: 8px; height: 8px; background: var(--lime); border-radius: 50%; }
+    .chat-stream { display: grid; gap: 12px; padding: 21px 0; }.message { max-width: 82%; padding: 15px; border: 1px solid rgba(255, 255, 255, .15); color: #eaf2e7; font-size: 14px; line-height: 1.43; }.message p { margin: 0; }.message--mine { justify-self: end; color: var(--ink); background: var(--lime); border-color: var(--lime); }.message--approval { max-width: 100%; padding: 17px; color: #ddedd8; background: #0d2912; }.message--approval h3 { margin: 0 0 5px; color: var(--lime); font-size: 15px; }.message--approval p { color: #c3d8bd; }
+    .contact-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; margin-top: 15px; }.field { display: grid; gap: 6px; }.field--wide { grid-column: 1 / -1; }.field label { color: #c4d8bf; font-size: 12px; }.field input, .field textarea { width: 100%; min-height: 44px; padding: 11px; color: #f6fcf1; background: #123218; border: 1px solid rgba(255, 255, 255, .2); border-radius: 5px; }.field textarea { min-height: 82px; resize: vertical; }.field input::placeholder, .field textarea::placeholder { color: #9fb89a; }
+    .chat-compose { display: grid; grid-template-columns: auto 1fr auto; gap: 10px; align-items: end; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.14); }.chat-compose textarea { min-height: 46px; padding: 12px; color: #f6fcf1; background: #0d2912; border: 1px solid rgba(255,255,255,.2); border-radius: 5px; resize: vertical; }.chat-compose textarea::placeholder { color: #a7bba2; }.compose-voice { display: grid; width: 46px; height: 46px; place-items: center; color: var(--ink); background: var(--lime); border: 1px solid var(--lime); border-radius: 50%; cursor: pointer; }.compose-voice[aria-pressed="true"] { color: #f6fcf1; background: transparent; }.compose-voice svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+
+    .plans { color: var(--ink); background: #dce7d8; }.plans-head { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(340px, 1.2fr); gap: clamp(35px, 8vw, 132px); align-items: end; margin-bottom: clamp(38px, 5vw, 70px); }.plans-head > p { margin: 0; }.plans-grid { display: grid; grid-template-columns: 1fr 1fr 1.18fr; padding: 12px 0 0 12px; border-top: 1px solid #8fa58c; border-left: 1px solid #8fa58c; }.plan { display: flex; flex-direction: column; min-height: 330px; padding: clamp(22px, 3vw, 38px); border-right: 1px solid #8fa58c; border-bottom: 1px solid #8fa58c; }.plan--enterprise { color: #f1f8ed; background: #103817; }.plan h3 { margin: 0; font-size: 28px; letter-spacing: -.035em; }.plan-price { margin: 48px 0 9px; font-size: 48px; font-weight: 700; letter-spacing: -.04em; line-height: .9; }.plan-price span { font-size: 14px; font-weight: 400; letter-spacing: 0; }.plan p:not(.plan-price) { max-width: 26ch; margin: 0 0 30px; color: #354e34; font-size: 14px; line-height: 1.45; }.plan--enterprise p:not(.plan-price) { color: #c9dec4; }.plan a { margin-top: auto; color: inherit; font-weight: 700; text-underline-offset: 5px; }
+
+    .closing { color: #f6fbf1; background: #09190c; }.closing-inner { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(220px, .8fr); gap: 44px; align-items: end; min-height: 530px; padding-block: clamp(72px, 9vw, 148px); }.closing h2 { max-width: 9ch; margin: 0; color: #f6fbf1; font-size: clamp(3.6rem, 6.5vw, 7rem); line-height: .86; letter-spacing: -.04em; }.closing h2 strong { color: var(--lime); font-weight: inherit; }.closing p { max-width: 36ch; margin: 22px 0 0; color: #c4d6c1; line-height: 1.5; }.closing .btn { margin-top: 28px; }.footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding-bottom: 18px; }.footer-links h3 { margin: 0 0 13px; color: var(--lime); font-size: 13px; }.footer-links ul { margin: 0; padding: 0; list-style: none; }.footer-links li + li { margin-top: 9px; }.footer-links a { color: #e5efe1; text-decoration: none; }.footer-links a:hover { color: var(--lime); }.footer-bottom { display: flex; justify-content: space-between; gap: 14px; padding: 22px 0; border-top: 1px solid rgba(255,255,255,.15); color: #a7bba2; font-size: 13px; }.footer-bottom a { color: inherit; }
+
+    @media (max-width: 1000px) { main > .hero > .wrap.hero__grid, .problem-grid, .life-layout, .voice-grid, .brief-grid, .plans-head { grid-template-columns: 1fr; }.hero::before { inset: 42% 0 0; }.hero__grid { min-height: auto; }.problem-intro, .life-copy, .voice-copy, .brief-copy { position: static; }.routing-window { max-width: 760px; }.plans-grid { grid-template-columns: 1fr 1fr; }.plan--enterprise { grid-column: 1 / -1; }.problem-panel { min-height: 360px; } }
+    @media (max-width: 680px) { body { padding-top: 64px; }.nav { height: 64px; }.wrap { width: min(100% - 32px, 1440px); }.nav__bar { grid-template-columns: 1fr auto; min-height: 64px; }.nav__links, .nav__action { display: none; }.menu-toggle { display: grid; width: 38px; height: 38px; place-items: center; color: #f6fbf1; background: transparent; border: 1px solid rgba(255,255,255,.28); border-radius: 5px; cursor: pointer; }.menu-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }.nav[data-open="true"] .nav__links { position: absolute; top: 64px; left: 16px; right: 16px; display: grid; gap: 3px; padding: 10px; background: #0c2012; border: 1px solid rgba(198,241,157,.24); }.nav[data-open="true"] .nav__links a { padding: 11px; }.hero__grid { padding-block: 68px 55px; }.hero h1 { font-size: clamp(3.7rem, 16.7vw, 5.25rem); }.hero p { margin-top: 20px; }.rotating-slot { block-size: 1.95em; }.routing-body { grid-template-columns: 1fr; }.agent-rail { display: flex; overflow: auto; padding: 10px; border-right: 0; border-bottom: 1px solid rgba(255,255,255,.11); }.agent-rail p { display: none; }.agent-button { flex: 0 0 auto; width: auto; }.routing-window::before { display: none; }.problem-tabs { grid-template-columns: 1fr 1fr; }.problem-tab:nth-child(3n) { border-right: 1px solid #c1cbc0; }.problem-tab:nth-child(2n) { border-right: 0; }.problem-panel { grid-template-columns: 1fr; gap: 35px; min-height: 0; }.pressure-map { padding-left: 18px; }.scene { min-height: clamp(330px, 104vw, 520px); }.scene-copy { padding: 14px; }.scene-copy span { font-size: 13px; }.orchestra-frame { aspect-ratio: 4 / 5; }.contact-fields { grid-template-columns: 1fr; }.chat-compose { grid-template-columns: auto 1fr; }.chat-compose .btn { grid-column: 1 / -1; }.plans-grid, .closing-inner { grid-template-columns: 1fr; }.plan--enterprise { grid-column: auto; }.closing-inner { min-height: auto; }.footer-bottom { display: grid; }.thread-note { max-width: 91%; } }
+    @media (max-width: 420px) { main > section { padding: 68px 12px; }.hero h1 { font-size: clamp(3.35rem, 17vw, 4.5rem); }.hero-actions .btn { width: 100%; }.problem-tabs { grid-template-columns: 1fr; }.problem-tab, .problem-tab:nth-child(3n) { border-right: 0; border-bottom: 1px solid #c1cbc0; }.scene { min-height: 360px; }.orchestra-frame { aspect-ratio: 3 / 4; }.chat-compose { grid-template-columns: 1fr; }.compose-voice { display: none; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.rotating-word, .voice-wave i { animation: none !important; }.motion-control { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="ambient-field" aria-hidden="true"></div>
+  <header class="nav">
+    <div class="wrap nav__bar">
+      <a class="skip-link" href="#main">Skip to content</a>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span>Hallard</a>
+      <nav class="nav__links" aria-label="Primary navigation"><a href="#problems">Problems</a><a href="#voice">Voice team</a><a href="#plans">Plans</a><a href="#start">Start</a></nav>
+      <a class="btn nav__action" href="#start">Talk to Hallard</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16"/></svg></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-h">
+      <div class="wrap hero__grid">
+        <div class="hero-copy">
+          <h1 id="hero-h">Let AI agents <span class="rotating-slot" aria-live="off"><span class="rotating-word" data-phrase-current>fix the bottleneck.</span><span class="rotating-word" data-phrase-next aria-hidden="true"></span></span></h1>
+          <p>Say what needs to happen. Hallard brings the right specialists into the conversation, builds the plan with you, and keeps the work moving until it is ready for your review.</p>
+          <div class="hero-actions"><a class="btn" href="#start">Talk to Hallard <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h10M8 4l4 4-4 4"/></svg></a><a class="btn btn--dark" href="#voice">Meet your AI team</a></div>
+          <div class="hero-proof">Starter workspaces begin at $49/month. Your approval remains the gate.</div>
+          <button class="motion-control" type="button" data-motion-toggle>Pause headline motion</button>
+        </div>
+        <div class="routing-window" aria-label="Illustrative Hallard workspace routing a business follow-up problem to specialist agents for review">
+          <div class="routing-top" data-route-step style="--route-delay: 0ms"><span>HALLARD / WORK ROUTING</span><strong data-route-status>AWAITING APPROVAL</strong></div>
+          <div class="routing-body">
+            <div class="agent-rail" data-route-step style="--route-delay: 90ms" aria-label="Specialist agents on this job"><p>On this job</p><button class="agent-button" type="button" aria-pressed="true"><span class="agent-dot"></span>Hallard</button><button class="agent-button" type="button" aria-pressed="false"><span class="agent-dot agent-dot--blue"></span>Quill</button><button class="agent-button" type="button" aria-pressed="false"><span class="agent-dot agent-dot--orange"></span>Penn</button><button class="agent-button" type="button" aria-pressed="false"><span class="agent-dot agent-dot--violet"></span>Cody</button></div>
+            <div class="routing-main"><p class="micro-label" data-route-step style="--route-delay: 180ms">You said</p><p class="request" data-route-step style="--route-delay: 250ms">“We have <em>18 customer follow-ups</em> sitting still. Find what is blocking them and put a plan in front of me.”</p><p class="route-title" data-route-step style="--route-delay: 420ms"><span>Hallard assembled a team</span><b>3 specialists</b></p><ol class="route-list"><li data-route-step style="--route-delay: 510ms"><i>1</i><span>Quill checks pipeline and missed handoffs</span><small>data</small></li><li data-route-step style="--route-delay: 590ms"><i>2</i><span>Penn drafts the customer recovery sequence</span><small>copy</small></li><li data-route-step style="--route-delay: 670ms"><i>3</i><span>Hallard schedules ownership and review</span><small>ops</small></li></ol><div class="approval-line" data-route-step style="--route-delay: 800ms"><span>Plan ready for your decision</span><small>YOU APPROVE</small></div><button class="routing-replay" type="button" data-route-replay data-route-step style="--route-delay: 890ms">Replay routing <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 4v4H9M3 12V8h4M12.5 8a4.5 4.5 0 0 0-7.8-2.9L3 7M3.5 8a4.5 4.5 0 0 0 7.8 2.9L13 9"/></svg></button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="problem-section" id="problems" aria-labelledby="problem-h">
+      <div class="wrap problem-grid">
+        <div class="problem-intro"><h2 id="problem-h">What kind of pressure can Hallard help solve?</h2><p>Choose the work that is slowing the business down. The first useful outcome is not an answer. It is a visible plan, with people and agents assigned to move it.</p></div>
+        <div class="problem-explorer">
+          <div class="problem-tabs" role="tablist" aria-label="Business problems"><button class="problem-tab" type="button" role="tab" aria-selected="true" aria-controls="problem-panel" data-problem="customers">Customers</button><button class="problem-tab" type="button" role="tab" aria-selected="false" aria-controls="problem-panel" data-problem="growth">Growth</button><button class="problem-tab" type="button" role="tab" aria-selected="false" aria-controls="problem-panel" data-problem="operations">Operations</button><button class="problem-tab" type="button" role="tab" aria-selected="false" aria-controls="problem-panel" data-problem="launch">Launches</button><button class="problem-tab" type="button" role="tab" aria-selected="false" aria-controls="problem-panel" data-problem="reporting">Reporting</button><button class="problem-tab" type="button" role="tab" aria-selected="false" aria-controls="problem-panel" data-problem="capacity">Capacity</button></div>
+          <div class="problem-panel" id="problem-panel" role="tabpanel" tabindex="0"><div><p class="micro-label" data-problem-label>CUSTOMER RECOVERY</p><h3 data-problem-title>Turn a silent follow-up queue into a plan people can act on.</h3><p data-problem-copy>Hallard can trace the handoffs, identify what needs a human decision, draft the recovery work, and return with clear ownership for your approval.</p></div><div class="pressure-map" aria-label="Illustrative work signals"><p>Illustrative work signals</p><div class="signal"><span data-signal-one>handoffs</span><i></i></div><div class="signal"><span data-signal-two>reply work</span><i></i></div><div class="signal"><span data-signal-three>owner view</span><i></i></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="life-section" aria-labelledby="life-h">
+      <div class="wrap life-layout"><div class="life-copy"><h2 id="life-h">Three lives. One team that keeps work moving.</h2><p>Hallard should give you more room to decide, not more software to manage, whether you are starting, operating, or scaling.</p></div>
+        <div class="life-scenes" aria-label="Illustrative ways Hallard can support different business stages">
+          <figure class="scene"><img src="https://images.pexels.com/photos/5725556/pexels-photo-5725556.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" width="3806" height="5709" loading="lazy" alt="A founder working from home while holding a baby"><figcaption class="scene-copy"><strong>Starter</strong><span>Move the setup work before it takes over the week.</span></figcaption></figure>
+          <figure class="scene"><img src="https://images.pexels.com/photos/5999829/pexels-photo-5999829.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" width="4000" height="6000" loading="lazy" alt="An entrepreneur using a phone and laptop at a café"><figcaption class="scene-copy"><strong>Business</strong><span>Keep a growing team aligned on what is moving and why.</span></figcaption></figure>
+          <figure class="scene"><img src="https://images.pexels.com/photos/7674645/pexels-photo-7674645.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1600" width="5815" height="3882" loading="lazy" alt="A diverse leadership team collaborating in a modern office"><figcaption class="scene-copy"><strong>Enterprise</strong><span>Make human-approved AI work a company capability.</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="voice-section" id="voice" aria-labelledby="voice-h">
+      <div class="wrap voice-grid"><div class="voice-copy"><h2 id="voice-h">Solve a problem by talking with one or more of your AI agents.</h2><p>Voice keeps the situation human. Start with the outcome, let specialists question the work together, and step in when your judgment changes the route.</p></div>
+        <div class="voice-demo"><div class="voice-thread"><div class="thread-note thread-note--human"><p>“We are losing good prospects after the first meeting. I need the team to find the gap before next week.”</p></div><div class="thread-note"><p>Hallard brings in Quill for pipeline evidence, Penn for the recovery message, and Cody to keep the work connected to the calendar.</p></div><div class="thread-note thread-note--system"><button class="voice-button" type="button" data-voice-toggle aria-pressed="false" aria-label="Toggle illustrative voice mode"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0a4 4 0 0 0 4-4V7m-4 7a4 4 0 0 1-4-4V7m4 11v3m-4 0h8"/></svg></button><div><div class="voice-wave" data-voice-wave="false" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div><p class="voice-state" data-voice-state>Voice mode is ready when you are.</p></div></div><div class="thread-note"><p>Before anything proceeds, Hallard returns a plan with owners, draft work, and the decisions that need you.</p></div></div>
+          <details class="orchestra-details" open><summary>See the team handoff in motion <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M8 3v10"/></svg></summary><iframe class="orchestra-frame" data-orchestra-frame data-src="hairline-agent-orchestra.html" title="Interactive diagram of a coordinated agent handoff" loading="lazy"></iframe></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="brief-section" id="start" aria-labelledby="brief-h">
+      <div class="wrap brief-grid"><div class="brief-copy"><h2 id="brief-h">Start with the problem you cannot afford to leave behind.</h2><p>Give Hallard the plain-language version. We will help identify the right first team, decide the useful scope, and show you how the work can move with you in control.</p></div>
+        <form class="brief-chat" action="mailto:support@mentek.ai" method="post" enctype="text/plain" aria-labelledby="brief-form-h"><div class="chat-top"><span id="brief-form-h">Hallard / new brief</span><span class="chat-status">human approval on</span></div><div class="chat-stream"><div class="message message--mine"><p>“I need to know why customers are going quiet, and what we should do next.”</p></div><div class="message"><p>I can bring the right agent team into the brief. Before that, tell me who should receive the plan.</p></div><div class="message message--approval"><h3>Approval checkpoint</h3><p>Your contact details stay attached to the conversation, so the plan returns to the right person.</p><div class="contact-fields"><div class="field"><label for="full-name">Your name</label><input id="full-name" name="name" autocomplete="name" required></div><div class="field"><label for="work-email">Work email</label><input id="work-email" name="email" type="email" autocomplete="email" autocapitalize="none" spellcheck="false" required></div><div class="field field--wide"><label for="company">Company <span class="sr-only">optional</span></label><input id="company" name="company" autocomplete="organization"></div></div></div></div><div class="chat-compose"><button class="compose-voice" type="button" data-compose-voice aria-pressed="false" aria-label="Toggle voice mode for the brief"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0a4 4 0 0 0 4-4V7m-4 7a4 4 0 0 1-4-4V7m4 11v3m-4 0h8"/></svg></button><label class="sr-only" for="business-problem">What needs to move?</label><textarea id="business-problem" name="problem" required placeholder="What is the business problem you want to solve first?"></textarea><button class="btn" type="submit">Send the brief <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h10M8 4l4 4-4 4"/></svg></button></div></form>
+      </div>
+    </section>
+
+    <section class="plans" id="plans" aria-labelledby="plans-h"><div class="wrap"><div class="plans-head"><h2 id="plans-h">Choose the scope that fits the work.</h2><p>Every plan gives your business access to Hallard’s AI workforce. Start with the capacity you need and expand the team when the work proves it belongs.</p></div><div class="plans-grid"><article class="plan"><h3>Starter</h3><p class="plan-price">$49 <span>/ month</span></p><p>For brave founders and small teams ready to put an AI team on a real job.</p><a href="#start">Choose Starter</a></article><article class="plan"><h3>Business</h3><p class="plan-price">$199 <span>/ month</span></p><p>For growing teams that need capacity, organization, and control around the work.</p><a href="#start">Choose Business</a></article><article class="plan plan--enterprise"><h3>Enterprise</h3><p class="plan-price">Built with you</p><p>For organizations that need dedicated environments, custom usage, and enterprise controls.</p><a href="#start">Plan with us</a></article></div></div></section>
+  </main>
+
+  <footer class="closing"><div class="wrap closing-inner"><div><h2>Bring the work that is holding your business <strong>back.</strong></h2><p>Start with one real job. Meet the agents who can take it on, stay involved in the plan, and decide what moves next.</p><a class="btn" href="#start">Start with one job <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h10M8 4l4 4-4 4"/></svg></a></div><div class="footer-links"><div><h3>Platform</h3><ul><li><a href="#voice">AI workforce</a></li><li><a href="#problems">Problems we solve</a></li><li><a href="#plans">Plans</a></li></ul></div><div><h3>Start</h3><ul><li><a href="#start">Talk to Hallard</a></li><li><a href="#start">Describe a project</a></li></ul></div></div></div><div class="wrap footer-bottom"><span>© 2026 Mentek, LLC</span><span><a href="privacy-policy.html">Privacy</a> &nbsp; <a href="terms-and-conditions.html">Terms</a></span></div></footer>
+
+  <script>
+    (() => {
+      const phrases = [
+        { text: 'fix the bottleneck.' },
+        { text: 'own the follow-up.' },
+        { text: 'move the launch.' },
+        { text: 'do the work.', signature: true },
+        { text: 'find the handoff.' },
+        { text: 'build the plan.' },
+        { text: 'clear the backlog.' },
+        { text: 'do the work.', signature: true }
+      ];
+      const current = document.querySelector('[data-phrase-current]');
+      const next = document.querySelector('[data-phrase-next]');
+      const motionToggle = document.querySelector('[data-motion-toggle]');
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduceMotion) document.documentElement.classList.add('motion-ready');
+      let phraseIndex = 0;
+      let paused = reduceMotion;
+      let timer;
+      const swapPhrase = () => {
+        if (paused || !current || !next) return;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        const phrase = phrases[phraseIndex];
+        next.textContent = phrase.text;
+        next.classList.toggle('rotating-word--signature', Boolean(phrase.signature));
+        const outgoing = current.animate([{ opacity: 1, transform: 'translateY(0)' }, { opacity: 0, transform: 'translateY(-28%)' }], { duration: 360, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' });
+        const incoming = next.animate([{ opacity: 0, transform: 'translateY(28%)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 440, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' });
+        Promise.all([outgoing.finished, incoming.finished]).then(() => {
+          outgoing.cancel();
+          incoming.cancel();
+          current.textContent = next.textContent;
+          current.classList.toggle('rotating-word--signature', Boolean(phrase.signature));
+          next.textContent = '';
+          next.classList.remove('rotating-word--signature');
+        });
+      };
+      const schedulePhrase = () => {
+        window.clearTimeout(timer);
+        if (!paused) timer = window.setTimeout(() => {
+          swapPhrase();
+          schedulePhrase();
+        }, phrases[phraseIndex].signature ? 4100 : 2250);
+      };
+      const startPhrases = () => { window.clearTimeout(timer); schedulePhrase(); };
+      startPhrases();
+      motionToggle?.addEventListener('click', () => { paused = !paused; motionToggle.textContent = paused ? 'Play headline motion' : 'Pause headline motion'; startPhrases(); });
+
+      const routeWindow = document.querySelector('.routing-window');
+      const routeStatus = document.querySelector('[data-route-status]');
+      let routeTimer;
+      const playRoute = () => {
+        if (!routeWindow) return;
+        window.clearTimeout(routeTimer);
+        if (reduceMotion) { if (routeStatus) routeStatus.textContent = 'AWAITING APPROVAL'; return; }
+        routeWindow.classList.remove('is-routing');
+        void routeWindow.offsetWidth;
+        if (routeStatus) routeStatus.textContent = 'ASSEMBLING TEAM';
+        routeWindow.classList.add('is-routing');
+        routeTimer = window.setTimeout(() => { if (routeStatus) routeStatus.textContent = 'AWAITING APPROVAL'; }, 1500);
+      };
+      document.querySelector('[data-route-replay]')?.addEventListener('click', playRoute);
+      if ('IntersectionObserver' in window && routeWindow) {
+        const routeObserver = new IntersectionObserver((entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) { playRoute(); routeObserver.disconnect(); }
+        }, { threshold: .35 });
+        routeObserver.observe(routeWindow);
+      } else { playRoute(); }
+
+      document.querySelectorAll('.agent-button').forEach((button) => button.addEventListener('click', () => document.querySelectorAll('.agent-button').forEach((item) => item.setAttribute('aria-pressed', String(item === button)))));
+      const problems = {
+        customers: { label: 'CUSTOMER RECOVERY', title: 'Turn a silent follow-up queue into a plan people can act on.', copy: 'Hallard can trace the handoffs, identify what needs a human decision, draft the recovery work, and return with clear ownership for your approval.', signals: ['handoffs', 'reply work', 'owner view'] },
+        growth: { label: 'GROWTH MOMENTUM', title: 'Put the next experiment in motion before the opportunity gets colder.', copy: 'Bring the market question, campaign idea, or sales signal into one conversation. Hallard can organize research, draft the work, and keep the next decision visible.', signals: ['market signal', 'draft work', 'next decision'] },
+        operations: { label: 'OPERATIONS', title: 'Give recurring work a route instead of another place to get stuck.', copy: 'Hallard can coordinate the information, people, and repeatable steps around operations, then return the exceptions that need a human call.', signals: ['intake', 'repeat work', 'exceptions'] },
+        launch: { label: 'LAUNCH CONTROL', title: 'Make the launch a shared plan instead of a chain of last-minute messages.', copy: 'Start with the outcome and dates. Hallard can put specialists on the research, creative, preparation, and coordination work while keeping the decision points clear.', signals: ['scope', 'build work', 'launch owner'] },
+        reporting: { label: 'REPORTING', title: 'Make the important signal easier to see than the spreadsheet.', copy: 'Hallard can gather the business context, organize the reporting work, and prepare the questions leaders should answer next.', signals: ['source work', 'signal', 'leadership call'] },
+        capacity: { label: 'TEAM CAPACITY', title: 'Find what should be delegated before your best people become the bottleneck.', copy: 'Bring the overloaded process to Hallard. The agent team can map the work, take on the repeatable parts, and keep judgment routed to your people.', signals: ['load', 'delegation', 'human gate'] }
+      };
+      const panel = document.querySelector('#problem-panel');
+      const changeProblem = (key) => { const problem = problems[key]; if (!problem) return; panel.querySelector('[data-problem-label]').textContent = problem.label; panel.querySelector('[data-problem-title]').textContent = problem.title; panel.querySelector('[data-problem-copy]').textContent = problem.copy; panel.querySelector('[data-signal-one]').textContent = problem.signals[0]; panel.querySelector('[data-signal-two]').textContent = problem.signals[1]; panel.querySelector('[data-signal-three]').textContent = problem.signals[2]; };
+      document.querySelectorAll('[data-problem]').forEach((button) => button.addEventListener('click', () => { document.querySelectorAll('[data-problem]').forEach((item) => item.setAttribute('aria-selected', String(item === button))); changeProblem(button.dataset.problem); }));
+
+      const setVoice = (button, wave, status) => { const active = button.getAttribute('aria-pressed') !== 'true'; button.setAttribute('aria-pressed', String(active)); if (wave) wave.dataset.active = String(active); if (status) status.textContent = active ? 'Voice mode is listening. Tell the team what changed.' : 'Voice mode is ready when you are.'; };
+      const demoVoice = document.querySelector('[data-voice-toggle]');
+      demoVoice?.addEventListener('click', () => setVoice(demoVoice, document.querySelector('[data-voice-wave]'), document.querySelector('[data-voice-state]')));
+      const composeVoice = document.querySelector('[data-compose-voice]');
+      composeVoice?.addEventListener('click', () => setVoice(composeVoice));
+
+      const orchestraFrame = document.querySelector('[data-orchestra-frame]');
+      const voiceSection = document.querySelector('#voice');
+      const loadOrchestra = () => {
+        if (orchestraFrame && !orchestraFrame.getAttribute('src')) orchestraFrame.src = orchestraFrame.dataset.src;
+      };
+      if ('IntersectionObserver' in window && voiceSection) {
+        const orchestraObserver = new IntersectionObserver((entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) { loadOrchestra(); orchestraObserver.disconnect(); }
+        }, { threshold: .2 });
+        orchestraObserver.observe(voiceSection);
+      } else { loadOrchestra(); }
+
+      const nav = document.querySelector('.nav'); const menu = document.querySelector('.menu-toggle');
+      menu?.addEventListener('click', () => { const open = menu.getAttribute('aria-expanded') === 'true'; menu.setAttribute('aria-expanded', String(!open)); nav?.setAttribute('data-open', String(!open)); });
+      document.querySelectorAll('.nav__links a').forEach((link) => link.addEventListener('click', () => { menu?.setAttribute('aria-expanded', 'false'); nav?.setAttribute('data-open', 'false'); }));
+    })();
+  </script>
+</body>
+</html>

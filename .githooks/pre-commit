@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+# Keep the project design records in sync before a commit. This is intentionally
+# a report-only check: Impeccable's doctor exits cleanly for findings and tells
+# us which explicit maintenance command should resolve them.
+npx --yes impeccable doctor --json --target .
