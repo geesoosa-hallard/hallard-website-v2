@@ -7,6 +7,7 @@ const { render } = await import(entryPath);
 const pages = [
   { path: 'index.html', url: '/' },
   { path: 'mentek.html', url: '/mentek.html' },
+  { path: 'founding-circle.html', url: '/founding-circle.html' },
 ];
 
 for (const page of pages) {

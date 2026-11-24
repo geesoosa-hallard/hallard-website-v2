@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-type="software" data-site-kind="software">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#11151b" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      try {
+        const theme = localStorage.getItem('hallard:theme');
+        if (theme === 'light' || theme === 'dark') {
+          document.documentElement.dataset.theme = theme;
+          document.querySelector('meta[name="color-scheme"]').content = theme;
+          document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#080b10' : '#ecebe7';
+        }
+      } catch {}
+    </script>
+    <meta name="page-type" content="software" />
+    <meta name="site-kind" content="software" />
+    <meta name="robots" content="noindex" />
+    <meta name="description" content="A personal invitation to join the HALLARD Founding Circle — be part of the beginning. Enter your invitation code to choose how you participate." />
+    <link rel="canonical" href="https://hallard.io/founding-circle.html" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="HALLARD Founding Circle — Be part of the beginning" />
+    <meta property="og:description" content="An invitation to be part of HALLARD from the very beginning. Founding recognition, extra capacity, personal guidance, and an AI intelligence briefing." />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hallard" />
+    <meta property="og:url" content="https://hallard.io/founding-circle.html" />
+    <meta property="og:image" content="https://hallard.io/og-hallard.png" />
+    <title>HALLARD Founding Circle — Be part of the beginning</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/founding-main.jsx"></script>
+  </body>
+</html>
